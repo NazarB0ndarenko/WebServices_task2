@@ -1,0 +1,84 @@
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://task2/shop"
+        targetNamespace="http://task2/shop"
+        elementFormDefault="qualified">
+
+    <xs:element name="getAllItemsRequest">
+        <xs:complexType/>
+    </xs:element>
+
+    <xs:element name="getAllItemsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="getItemDto" type="tns:getItemDto" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createItemRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="createItemDto" type="tns:createItemDto"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createItemResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="createOrderDto" type="tns:createOrderDto"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createOrderResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="getItemDto">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="price" type="xs:decimal"/>
+            <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="createItemDto">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="price" type="xs:decimal"/>
+            <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="createOrderDto">
+        <xs:sequence>
+            <xs:element name="deliveryAddress" type="xs:string"/>
+            <xs:element name="customerName" type="xs:string"/>
+            <xs:element name="totalPrice" type="xs:decimal"/>
+            <xs:element name="orderedItems" type="tns:orderItemDto" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="orderItemDto">
+        <xs:sequence>
+            <xs:element name="itemId" type="xs:long"/>
+            <xs:element name="quantity" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
